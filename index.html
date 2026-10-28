@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NyayaSetu - Legal Tools, Quiz & Study Hub</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    .font-serif-legal {
+      font-family: 'Cinzel', Georgia, serif;
+    }
+    
+    /* Dark Theme Overrides */
+    body.theme-dark {
+      background-color: #090e17;
+      color: #f1f5f9;
+    }
+    body.theme-dark .bg-white {
+      background-color: #151e2e !important;
+      color: #f1f5f9 !important;
+    }
+    body.theme-dark .bg-slate-50 {
+      background-color: #0d1524 !important;
+      color: #f1f5f9 !important;
+    }
+    body.theme-dark .border-slate-200, 
+    body.theme-dark .border-slate-100 {
+      border-color: #243247 !important;
+    }
+    body.theme-dark .text-slate-900, 
+    body.theme-dark .text-slate-800 {
+      color: #f8fafc !important;
+    }
+    body.theme-dark .text-slate-700, 
+    body.theme-dark .text-slate-600 {
+      color: #cbd5e1 !important;
+    }
+    body.theme-dark .text-slate-500 {
+      color: #94a3b8 !important;
+    }
+    body.theme-dark input, 
+    body.theme-dark select, 
+    body.theme-dark textarea {
+      background-color: #0d1524 !important;
+      color: #f8fafc !important;
+      border-color: #33455e !important;
+    }
+    body.theme-dark .bg-slate-100 {
+      background-color: #243247 !important;
+      color: #e2e8f0 !important;
+    }
+
+    /* Print Specific Styles */
+    @media print {
+      header, footer, #search-input, .cat-filter-btn, #open-upload-btn, 
+      #nav-tools-btn, #nav-calendar-btn, #nav-quiz-btn, #nav-notes-btn, 
+      #theme-toggle-btn, #export-csv-btn, #print-board-btn, #diary-add-btn,
+      #calc-deadline-btn, #quiz-section {
+        display: none !important;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      .bg-white, .bg-slate-50 {
+        background: transparent !important;
+        border: 1px solid #ccc !important;
+      }
+    }
+  </style>
+</head>
+<body id="app-body" class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+  <!-- Header -->
+  <header class="bg-slate-900 text-white border-b border-amber-600/30 sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-slate-950 font-bold shadow-inner">
+          <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold tracking-tight font-serif-legal text-amber-400">NyayaSetu</h1>
+            <span class="text-xs bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded font-mono">v4.0</span>
+          </div>
+          <p class="text-xs text-slate-400">Daily Legal Tools & Bare Act Notes for Aspirants, Advocates, CA/CS & Citizens</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button id="nav-tools-btn" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">
+          Daily Tools
+        </button>
+        <button id="nav-calendar-btn" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-1">
+          <span>📅</span> Hearing Calendar
+        </button>
+        <button id="nav-quiz-btn" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-amber-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-1">
+          <span>⚡</span> Bare Act Quiz
+        </button>
+        <button id="nav-notes-btn" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-amber-600 text-white hover:bg-amber-500 transition-colors shadow-sm">
+          PDF Notes Library
+        </button>
+        <!-- Dark / Light Theme Toggle -->
+        <button id="theme-toggle-btn" class="p-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-amber-400 transition-colors" title="Toggle Dark/Light Mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Quick Search -->
+  <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-8 px-4 sm:px-6 lg:px-8 border-b border-slate-700">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-100 font-serif-legal">
+        Legal Knowledge & Practical Court Tools
+      </h2>
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
+        Search Bare Act study summaries, calculate statutory limitation deadlines, manage court hearings on an interactive calendar, export cause lists, and test prelims recall.
+      </p>
+
+      <!-- Global Search -->
+      <div class="relative max-w-xl mx-auto pt-2">
+        <input 
+          id="search-input" 
+          type="text" 
+          placeholder="Search by act, section, topic (e.g. BNS, Limitation, RTI, Companies Act)..." 
+          class="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-800/90 border border-slate-600 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 shadow-inner"
+        >
+        <div class="absolute inset-y-0 left-0 pl-3.5 pt-2 flex items-center pointer-events-none text-slate-400">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-10">
+
+    <!-- Section 1: Daily Practice Tools -->
+    <section id="tools-section" class="space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+            </svg>
+            Daily Practical Tools
+          </h3>
+          <p class="text-xs text-slate-500">Calculators and quick logs essential for daily legal and compliance work</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Tool 1: Limitation & Filing Deadline Calculator -->
+        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:border-slate-300 transition-all flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">
+                Advocates & Judiciary
+              </span>
+              <span class="text-xs text-slate-400 font-mono">Limitation Act 1963</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-base">Statutory Limitation & Filing Deadline Calculator</h4>
+            <p class="text-xs text-slate-600">Determine exact filing deadlines for appeals, revisions, and statutory notices under Indian Law.</p>
+
+            <div class="space-y-3 pt-2 text-sm">
+              <div>
+                <label for="cause-date" class="block text-xs font-medium text-slate-700 mb-1">Date of Order / Cause of Action</label>
+                <input 
+                  id="cause-date" 
+                  type="date" 
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                >
+              </div>
+
+              <div>
+                <label for="action-type" class="block text-xs font-medium text-slate-700 mb-1">Nature of Appeal / Application</label>
+                <select 
+                  id="action-type" 
+                  class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none bg-white"
+                >
+                  <option value="90">Civil Appeal to High Court (90 Days - Art 116(a))</option>
+                  <option value="30">Civil Appeal to District Court (30 Days - Art 116(b))</option>
+                  <option value="30_ws">Written Statement filing - Commercial Court (30 Days)</option>
+                  <option value="120_ws">Written Statement maximum outer limit (120 Days)</option>
+                  <option value="60_ca">Company Annual Return ROC filing (60 Days from AGM)</option>
+                  <option value="730">Consumer Protection District Forum (2 Years / 730 Days)</option>
+                </select>
+              </div>
+
+              <button 
+                id="calc-deadline-btn" 
+                class="w-full py-2 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
+              >
+                Compute Deadline
+              </button>
+            </div>
+          </div>
+
+          <!-- Result Box -->
+          <div id="calc-result" class="mt-4 p-3.5 bg-slate-50 border border-slate-200 rounded-lg hidden">
+            <div class="flex items-start justify-between">
+              <div>
+                <p class="text-xs text-slate-500 uppercase font-semibold">Statutory Last Date</p>
+                <p id="calc-result-date" class="text-base font-bold text-amber-700">-</p>
+              </div>
+              <div class="text-right">
+                <span id="calc-status-badge" class="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800">
+                  Active
+                </span>
+                <p id="calc-days-remaining" class="text-xs text-slate-500 mt-1">-</p>
+              </div>
+            </div>
+            <p id="calc-citation" class="text-xs text-slate-500 mt-2 border-t border-slate-200 pt-1.5 italic"></p>
+          </div>
+        </div>
+
+        <!-- Tool 2: Case & Compliance Quick Diary -->
+        <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:border-slate-300 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">
+                Daily Workspace
+              </span>
+              <span class="text-xs text-slate-400 font-mono">Synced with Calendar</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-base mt-2">Quick Case & Compliance Diary</h4>
+            <p class="text-xs text-slate-600 mb-3">Keep track of upcoming hearings, client filings, or study milestones.</p>
+
+            <!-- Form -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
+              <input 
+                id="diary-title" 
+                type="text" 
+                placeholder="Case / Subject (e.g. State vs Ramesh)" 
+                class="sm:col-span-2 px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:ring-1 focus:ring-amber-500 focus:outline-none"
+              >
+              <input 
+                id="diary-date" 
+                type="date" 
+                class="px-2 py-1.5 text-xs border border-slate-300 rounded-lg focus:ring-1 focus:ring-amber-500 focus:outline-none"
+              >
+              <select 
+                id="diary-role" 
+                class="px-2 py-1.5 text-xs border border-slate-300 rounded-lg focus:ring-1 focus:ring-amber-500 focus:outline-none bg-white"
+              >
+                <option value="Judiciary Study">Judiciary Study</option>
+                <option value="Court Hearing">Court Hearing</option>
+                <option value="ROC / Tax Filing">ROC / Tax Filing</option>
+                <option value="Citizen Legal Query">Citizen Legal Query</option>
+              </select>
+              <input 
+                id="diary-note" 
+                type="text" 
+                placeholder="Brief stage / agenda (e.g. Arguments on Charge)" 
+                class="sm:col-span-2 px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:ring-1 focus:ring-amber-500 focus:outline-none"
+              >
+            </div>
+
+            <button 
+              id="diary-add-btn" 
+              class="w-full py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-medium rounded-lg text-xs transition-colors shadow-sm mb-3"
+            >
+              + Add to Diary
+            </button>
+
+            <!-- Diary Item List -->
+            <div id="diary-list" class="space-y-2 max-h-40 overflow-y-auto pr-1">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 2: Court Hearing Calendar & Daily Board -->
+    <section id="calendar-section" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-blue-800">
+              Interactive Court Planner
+            </span>
+            <span class="text-xs text-slate-400 font-mono">Cause List & Hearings</span>
+          </div>
+          <h3 class="text-xl font-bold font-serif-legal text-slate-900 mt-1 flex items-center gap-2">
+            Court Hearing & Compliance Calendar
+          </h3>
+          <p class="text-xs text-slate-500">Visual monthly calendar showing daily hearings, ROC deadlines, and study milestones</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Action Buttons: Export & Print (NEW in Step 4) -->
+          <div class="flex items-center gap-1.5">
+            <button id="export-csv-btn" class="px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-xs font-semibold text-slate-700 transition-colors flex items-center gap-1 shadow-xs">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+              Export CSV
+            </button>
+            <button id="print-board-btn" class="px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-xs font-semibold text-slate-700 transition-colors flex items-center gap-1 shadow-xs">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+              </svg>
+              Print Board
+            </button>
+          </div>
+
+          <!-- Month Navigation -->
+          <div class="flex items-center space-x-2">
+            <button id="cal-prev-btn" class="p-2 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <span id="cal-month-title" class="text-sm font-bold text-slate-800 min-w-[130px] text-center font-serif-legal">
+              October 2026
+            </span>
+            <button id="cal-next-btn" class="p-2 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar & Board Split Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Monthly Grid (2 cols on lg) -->
+        <div class="lg:col-span-2 space-y-2">
+          <!-- Day of week header -->
+          <div class="grid grid-cols-7 text-center text-xs font-semibold text-slate-500 py-2 border-b border-slate-100">
+            <span class="text-rose-600">Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+          </div>
+
+          <!-- Calendar Days Grid -->
+          <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 text-xs">
+            <!-- Injected by JS -->
+          </div>
+
+          <!-- Legend -->
+          <div class="flex flex-wrap items-center gap-4 pt-3 text-[11px] text-slate-500">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-600 inline-block"></span>
+              <span>Court Hearing</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-purple-600 inline-block"></span>
+              <span>Judiciary Study</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block"></span>
+              <span>ROC / Tax Filing</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-600 inline-block"></span>
+              <span>Citizen Query</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Daily Cause List Panel -->
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-slate-700">Cause List for Selected Date</h4>
+              <span id="selected-date-label" class="text-xs font-mono font-semibold text-amber-700">Today</span>
+            </div>
+
+            <div id="selected-day-items" class="space-y-2.5 max-h-64 overflow-y-auto pr-1">
+              <!-- Selected day entries populated by JS -->
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-200 mt-4 text-center">
+            <p class="text-[11px] text-slate-500">Select any date with a dot to view or audit schedule</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Bare Act Quiz Arena -->
+    <section id="quiz-section" class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-6 sm:p-8 text-white border border-amber-500/20 shadow-xl space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+              Judiciary & Advocate Practice
+            </span>
+            <span class="text-xs text-slate-400 font-mono">Prelims Prep</span>
+          </div>
+          <h3 class="text-xl font-bold font-serif-legal text-amber-400 mt-1 flex items-center gap-2">
+            Bare Act Section & Case Law Quiz Arena
+          </h3>
+          <p class="text-xs text-slate-300">Test section recall across BNS, BNSS, Indian Constitution, CPC, and Limitation Act</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="text-right">
+            <p class="text-[11px] text-slate-400 uppercase tracking-wider">Session Score</p>
+            <p id="quiz-score-display" class="text-lg font-bold text-amber-400 font-mono">0 / 0</p>
+          </div>
+          <button id="quiz-reset-btn" class="px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 rounded-lg transition-colors">
+            Reset Quiz
+          </button>
+        </div>
+      </div>
+
+      <!-- Quiz Card Container -->
+      <div class="bg-slate-800/80 rounded-xl p-5 sm:p-6 border border-slate-700/80 shadow-inner space-y-5">
+        <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-700 pb-2.5">
+          <span id="quiz-subject-badge" class="font-semibold text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">
+            Subject
+          </span>
+          <span id="quiz-progress-text">Question 1 of 5</span>
+        </div>
+
+        <p id="quiz-question-text" class="text-base sm:text-lg font-semibold text-slate-100 leading-snug">
+          Loading question...
+        </p>
+
+        <!-- Options List -->
+        <div id="quiz-options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <!-- Options injected by JS -->
+        </div>
+
+        <!-- Explanation Box -->
+        <div id="quiz-explanation-box" class="p-4 rounded-xl bg-slate-900/90 border border-slate-700 text-xs text-slate-300 hidden space-y-1.5">
+          <div class="flex items-center gap-2 font-bold text-amber-400">
+            <span>📖 Statutory Citation & Rationale:</span>
+          </div>
+          <p id="quiz-explanation-text" class="leading-relaxed"></p>
+        </div>
+
+        <!-- Footer / Next Button -->
+        <div class="flex justify-end pt-2">
+          <button id="quiz-next-btn" class="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs sm:text-sm rounded-lg transition-colors shadow-md hidden flex items-center gap-1.5">
+            <span>Next Question</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Citizen Legal Rights & Remedies Flowchart -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-5">
+      <div class="border-b border-slate-200 pb-3">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">
+          Citizen Rights & Legal Redressal
+        </span>
+        <h3 class="text-lg font-bold text-slate-900 mt-1">
+          Interactive Citizen Legal Remedies Roadmap
+        </h3>
+        <p class="text-xs text-slate-500">Know your statutory rights and procedural next steps for common civil, consumer, and criminal issues</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Card 1 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 hover:border-amber-400 transition-all">
+          <div class="flex items-center gap-2 text-rose-700 font-bold text-xs uppercase tracking-wider">
+            <span>🚨 Police Refuses FIR</span>
+          </div>
+          <p class="text-xs text-slate-700 font-medium">Statutory Steps under BNSS 2023:</p>
+          <ul class="text-[11px] text-slate-600 space-y-1 list-disc pl-4">
+            <li><strong>Step 1:</strong> Send written substance of complaint to Superintendent of Police via registered post under <em>Section 173(4) BNSS</em>.</li>
+            <li><strong>Step 2:</strong> If no investigation, file an application before Judicial Magistrate under <em>Section 175(3) BNSS</em>.</li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 hover:border-amber-400 transition-all">
+          <div class="flex items-center gap-2 text-blue-700 font-bold text-xs uppercase tracking-wider">
+            <span>💳 Cheque Dishonour</span>
+          </div>
+          <p class="text-xs text-slate-700 font-medium">Negotiable Instruments Act (Sec 138):</p>
+          <ul class="text-[11px] text-slate-600 space-y-1 list-disc pl-4">
+            <li><strong>Step 1:</strong> Issue statutory legal demand notice within <strong>30 days</strong> of receiving memo of dishonour from the bank.</li>
+            <li><strong>Step 2:</strong> Give <strong>15 days</strong> to payer to make payment.</li>
+            <li><strong>Step 3:</strong> File criminal complaint before Magistrate within <strong>1 month</strong> of expiry of 15-day period.</li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 hover:border-amber-400 transition-all">
+          <div class="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider">
+            <span>🛒 Defective Product / Service</span>
+          </div>
+          <p class="text-xs text-slate-700 font-medium">Consumer Protection Act 2019:</p>
+          <ul class="text-[11px] text-slate-600 space-y-1 list-disc pl-4">
+            <li><strong>Step 1:</strong> Send formal notice to seller / e-commerce platform giving 15 days to refund/replace.</li>
+            <li><strong>Step 2:</strong> File e-complaint on <em>edaakhil.nic.in</em> (no lawyer needed for claims up to Rs 50 Lakhs).</li>
+            <li><strong>Limitation:</strong> Within <strong>2 years</strong> from cause of action (Section 69).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: PDF Notes & Bare Acts Library + Custom Uploader -->
+    <section id="notes-section" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            Curated PDF Notes & Bare Act Compendiums
+          </h3>
+          <p class="text-xs text-slate-500">Concise summaries, section comparisons, and procedural guides tailored by role</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Button to trigger custom note modal -->
+          <button id="open-upload-btn" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-amber-600 text-white hover:bg-amber-500 transition-all flex items-center gap-1.5 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Add Custom Note / File
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-1.5" id="category-filters">
+        <button data-cat="all" class="cat-filter-btn px-3 py-1 text-xs font-semibold rounded-full bg-slate-900 text-white shadow-sm transition-all">
+            All (6)
+          </button>
+        <button data-cat="judiciary" class="cat-filter-btn px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">
+          Judiciary Aspirants
+        </button>
+        <button data-cat="advocates" class="cat-filter-btn px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">
+          Advocates
+        </button>
+        <button data-cat="cacs" class="cat-filter-btn px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">
+          CA / CS
+        </button>
+        <button data-cat="citizens" class="cat-filter-btn px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">
+          Citizens
+        </button>
+      </div>
+
+      <!-- Notes Grid -->
+      <div id="notes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Notes cards populated by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Add Custom Note Modal -->
+  <div id="upload-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h4 class="text-base font-bold font-serif-legal text-slate-900 flex items-center gap-2">
+          <span>📑</span> Add Custom PDF / Study Note
+        </h4>
+        <button id="upload-close-btn" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label for="custom-title" class="block font-medium text-slate-700 mb-1">Note Title *</label>
+          <input id="custom-title" type="text" placeholder="e.g., Specific Relief Act Section 6 Case Briefs" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="custom-cat" class="block font-medium text-slate-700 mb-1">Target Audience</label>
+            <select id="custom-cat" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none bg-white">
+              <option value="judiciary">Judiciary Aspirants</option>
+              <option value="advocates">Advocates</option>
+              <option value="cacs">CA / CS</option>
+              <option value="citizens">Citizens</option>
+            </select>
+          </div>
+          <div>
+            <label for="custom-tags" class="block font-medium text-slate-700 mb-1">Hashtags</label>
+            <input id="custom-tags" type="text" placeholder="#SRA, #CivilLaw" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label for="custom-file" class="block font-medium text-slate-700 mb-1">Attach Local File (PDF or Text)</label>
+          <input id="custom-file" type="file" accept=".pdf,.txt,.doc,.docx" class="w-full px-3 py-1.5 border border-slate-200 rounded-lg bg-slate-50 text-slate-600 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:bg-slate-800 file:text-white hover:file:bg-slate-700 cursor-pointer">
+        </div>
+
+        <div>
+          <label for="custom-body" class="block font-medium text-slate-700 mb-1">Note Summary / Outline Content *</label>
+          <textarea id="custom-body" rows="4" placeholder="Enter key points, statutory sections, or case ratio here..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none"></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2 border-t border-slate-200">
+        <button id="upload-cancel-btn" class="px-3.5 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+          Cancel
+        </button>
+        <button id="upload-save-btn" class="px-4 py-1.5 text-xs font-semibold bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors shadow-sm">
+          Save Note
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Note Reading Modal -->
+  <div id="note-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between border-b border-amber-600/30">
+        <div>
+          <span id="modal-category-badge" class="px-2 py-0.5 text-xs font-semibold rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">
+            Judiciary
+          </span>
+          <h4 id="modal-title" class="text-base sm:text-lg font-bold font-serif-legal text-slate-100 mt-1">
+            Note Title
+          </h4>
+        </div>
+        <button id="modal-close-btn" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div id="modal-content" class="px-6 py-6 overflow-y-auto space-y-4 text-sm leading-relaxed text-slate-700">
+        <!-- Injected content -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+        <span class="text-xs text-slate-500">NyayaSetu Digital Note Repository</span>
+        <div class="flex gap-2">
+          <button id="modal-print-btn" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-amber-600 hover:bg-amber-500 text-white transition-colors flex items-center gap-1.5 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+            </svg>
+            Print / Save PDF
+          </button>
+          <button id="modal-dismiss-btn" class="px-3.5 py-1.5 text-xs font-medium rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-lg border border-amber-500/30 text-xs font-medium flex items-center space-x-2">
+      <span id="toast-icon">✓</span>
+      <span id="toast-msg">Notification message</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 NyayaSetu Portal. Designed for legal education & practice guidance.</p>
+      <div class="flex space-x-4">
+        <span>Bare Acts</span>
+        <span>•</span>
+        <span>Limitation Calculator</span>
+        <span>•</span>
+        <span>Hearing Calendar</span>
+        <span>•</span>
+        <span>Bare Act Quiz</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Quiz Data ---
+    const quizQuestions = [
+      {
+        id: 1,
+        subject: "Bharatiya Nyaya Sanhita (BNS) 2023",
+        question: "Under the Bharatiya Nyaya Sanhita (BNS) 2023, which section defines and penalizes the offence of Murder (replacing Section 302 IPC)?",
+        options: [
+          { text: "Section 101", isCorrect: false },
+          { text: "Section 103", isCorrect: true },
+          { text: "Section 109", isCorrect: false },
+          { text: "Section 111", isCorrect: false }
+        ],
+        explanation: "Section 103 of BNS 2023 punishes murder with death or imprisonment for life, alongside Section 103(2) addressing murder committed by groups on grounds of race, caste, community, or sex."
+      },
+      {
+        id: 2,
+        subject: "Constitution of India",
+        question: "Which landmark judgment established the 'Basic Structure Doctrine', restricting Parliament's constituent amending powers under Article 368?",
+        options: [
+          { text: "A.K. Gopalan v. State of Madras (1950)", isCorrect: false },
+          { text: "Golak Nath v. State of Punjab (1967)", isCorrect: false },
+          { text: "Kesavananda Bharati v. State of Kerala (1973)", isCorrect: true },
+          { text: "Minerva Mills v. Union of India (1980)", isCorrect: false }
+        ],
+        explanation: "In Kesavananda Bharati (1973), the 13-judge Constitutional Bench ruled by a 7:6 majority that while Article 368 gives wide amending power, Parliament cannot alter the basic framework or structure of the Constitution."
+      },
+      {
+        id: 3,
+        subject: "Limitation Act 1963",
+        question: "What is the statutory limitation period for preferring a Civil Appeal to the High Court under Article 116(a) of the Limitation Act, 1963?",
+        options: [
+          { text: "30 Days", isCorrect: false },
+          { text: "60 Days", isCorrect: false },
+          { text: "90 Days", isCorrect: true },
+          { text: "120 Days", isCorrect: false }
+        ],
+        explanation: "Under Article 116(a) of the Schedule to the Limitation Act 1963, the limitation period for an appeal to a High Court from any decree or order is 90 days from the date of the decree/order."
+      },
+      {
+        id: 4,
+        subject: "BNSS 2023 (Criminal Procedure)",
+        question: "Under Section 479 of BNSS 2023, what maximum fraction of imprisonment must a first-time undertrial offender undergo before mandatory release on bail/bond?",
+        options: [
+          { text: "One-Fourth (1/4)", isCorrect: false },
+          { text: "One-Third (1/3)", isCorrect: true },
+          { text: "One-Half (1/2)", isCorrect: false },
+          { text: "Two-Thirds (2/3)", isCorrect: false }
+        ],
+        explanation: "Section 479 BNSS provides special humanitarian relief for first-time offenders (never convicted previously) to be released on bail after undergoing detention of up to one-third of the maximum sentence."
+      },
+      {
+        id: 5,
+        subject: "Companies Act 2013",
+        question: "Within how many days from the conclusion of the Annual General Meeting (AGM) must Form MGT-7 (Annual Return) be filed with the ROC under Section 92?",
+        options: [
+          { text: "30 Days", isCorrect: false },
+          { text: "45 Days", isCorrect: false },
+          { text: "60 Days", isCorrect: true },
+          { text: "90 Days", isCorrect: false }
+        ],
+        explanation: "Under Section 92(4) of the Companies Act 2013, every company must file its Annual Return in Form MGT-7 within 60 days from the date on which the AGM is held."
+      }
+    ];
+
+    // --- Legal Notes Master Database ---
+    const initialNotes = [
+      {
+        id: "note-1",
+        title: "BNS 2023 vs IPC 1860: Master Transition Chart",
+        category: "judiciary",
+        categoryName: "Judiciary Aspirants",
+        badgeColor: "bg-purple-100 text-purple-800",
+        readTime: "7 min read",
+        pages: "12 Pages PDF",
+        description: "Comparative section mapping of Bharatiya Nyaya Sanhita (BNS) replacing IPC. Key focus on murder (Sec 103), theft (Sec 303), and organized crime.",
+        tags: ["#BNS", "#CriminalLaw", "#JudiciaryMains"],
+        content: `
+          <h5 class="text-base font-bold text-slate-900">1. Key Structural Shifts</h5>
+          <p>The Bharatiya Nyaya Sanhita (BNS) 2023 consolidates Indian criminal jurisprudence from 511 sections in IPC to 358 sections in BNS.</p>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg my-2 font-mono text-xs">
+            • IPC 302 (Murder) &rarr; BNS Section 103<br>
+            • IPC 307 (Attempt to Murder) &rarr; BNS Section 109<br>
+            • IPC 375 & 376 (Rape) &rarr; BNS Section 63 & 64<br>
+            • IPC 420 (Cheating) &rarr; BNS Section 318(4)<br>
+            • IPC 124A (Sedition) &rarr; Repealed; Replaced by BNS Sec 152 (Endangering Sovereignty)
+          </div>
+          <h5 class="text-base font-bold text-slate-900 mt-4">2. New Offence Categories</h5>
+          <p><strong>Community Service:</strong> Introduced as an alternative form of punishment for petty offences (e.g., small theft under Rs 5,000, defamation, public misconduct under intoxication).</p>
+          <p><strong>Organized Crime & Mob Lynching:</strong> Specific statutory penal provisions introduced under Section 111 (Organized Crime) and Section 103(2) (Mob Lynching with death penalty or life imprisonment).</p>
+        `
+      },
+      {
+        id: "note-2",
+        title: "Constitution of India: Landmark Judgments on Part III",
+        category: "judiciary",
+        categoryName: "Judiciary Aspirants",
+        badgeColor: "bg-purple-100 text-purple-800",
+        readTime: "10 min read",
+        pages: "18 Pages PDF",
+        description: "Essential case laws for Preliminary and Mains exams: Golden Triangle doctrine (Arts 14, 19, 21), Basic Structure, and transformative constitutionalism.",
+        tags: ["#Constitution", "#FundamentalRights", "#CaseLaws"],
+        content: `
+          <h5 class="text-base font-bold text-slate-900">1. The Golden Triangle (Articles 14, 19, and 21)</h5>
+          <p>In <em>Maneka Gandhi v. Union of India (1978)</em>, the Supreme Court overruled the silo doctrine of <em>A.K. Gopalan (1950)</em> and established that Articles 14, 19, and 21 are mutually supportive and must be read together.</p>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg my-2 text-xs">
+            <strong>Key Principles:</strong><br>
+            • "Procedure established by law" under Article 21 must be "just, fair, and reasonable", closely aligning it with substantive "Due Process".<br>
+            • Right to Privacy held as an intrinsic part of the right to life and personal liberty under Article 21 (<em>K.S. Puttaswamy v. Union of India, 2017</em>).
+          </div>
+          <h5 class="text-base font-bold text-slate-900 mt-4">2. Basic Structure Doctrine</h5>
+          <p><em>Kesavananda Bharati v. State of Kerala (1973)</em>: Parliament has wide amending powers under Article 368, but cannot alter the Basic Structure of the Constitution (judicial review, secularism, democracy, rule of law).</p>
+        `
+      },
+      {
+        id: "note-3",
+        title: "Advocate's Ready Reckoner: Limitation Act Periods",
+        category: "advocates",
+        categoryName: "Advocates",
+        badgeColor: "bg-blue-100 text-blue-800",
+        readTime: "5 min read",
+        pages: "8 Pages PDF",
+        description: "Quick-reference table of limitation periods for filing civil suits, appeals, revisions, and execution petitions under Schedule 1 of the 1963 Act.",
+        tags: ["#LimitationAct", "#CivilPractice", "#CourtRules"],
+        content: `
+          <h5 class="text-base font-bold text-slate-900">1. Limitation Schedule at a Glance</h5>
+          <div class="overflow-x-auto my-2 text-xs">
+            <table class="w-full text-left border border-slate-200">
+              <thead class="bg-slate-100 font-semibold text-slate-700">
+                <tr><th class="p-2 border">Action / Proceeding</th><th class="p-2 border">Limitation Period</th><th class="p-2 border">Article</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="p-2 border">Appeal to District Court</td><td class="p-2 border">30 Days</td><td class="p-2 border">Art 116(b)</td></tr>
+                <tr><td class="p-2 border">Appeal to High Court</td><td class="p-2 border">90 Days</td><td class="p-2 border">Art 116(a)</td></tr>
+                <tr><td class="p-2 border">Suit for Recovery of Money</td><td class="p-2 border">3 Years</td><td class="p-2 border">Art 19 - 22</td></tr>
+                <tr><td class="p-2 border">Execution of Decree</td><td class="p-2 border">12 Years</td><td class="p-2 border">Art 136</td></tr>
+                <tr><td class="p-2 border">Written Statement (Commercial)</td><td class="p-2 border">30 Days (Max 120)</td><td class="p-2 border">Order VIII Rule 1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h5 class="text-base font-bold text-slate-900 mt-3">2. Section 5 Condonation of Delay</h5>
+          <p>Sufficient cause must be established explaining each day of delay. Note: Section 5 does NOT apply to execution applications under Order XXI.</p>
+        `
+      },
+      {
+        id: "note-4",
+        title: "Bail Jurisprudence & BNSS 2023 Procedure",
+        category: "advocates",
+        categoryName: "Advocates",
+        badgeColor: "bg-blue-100 text-blue-800",
+        readTime: "8 min read",
+        pages: "14 Pages PDF",
+        description: "Comprehensive guide to Regular Bail, Anticipatory Bail, Default Bail (Section 187 BNSS / 167 CrPC), and statutory thresholds for first-time offenders.",
+        tags: ["#Bail", "#BNSS", "#CriminalProcedure"],
+        content: `
+          <h5 class="text-base font-bold text-slate-900">1. Bail Provisions Under BNSS 2023</h5>
+          <p>Section 479 of the Bharatiya Nagarik Suraksha Sanhita (BNSS) addresses bail for undertrial prisoners:</p>
+          <ul class="list-disc pl-5 my-2 space-y-1 text-xs">
+            <li><strong>First-time Offenders:</strong> Must be released on bond/bail if they have undergone detention for <strong>one-third</strong> of the maximum term of imprisonment prescribed for that offence.</li>
+            <li><strong>Other Undertrials:</strong> Release on bond/bail after undergoing detention for <strong>one-half</strong> of the maximum period.</li>
+            <li><strong>Exception:</strong> Offences carrying the death sentence or life imprisonment remain excluded.</li>
+          </ul>
+          <h5 class="text-base font-bold text-slate-900 mt-4">2. Section 482 (Anticipatory Bail)</h5>
+          <p>Now codified under Section 482 BNSS. The applicant must demonstrate a genuine apprehension of arrest on accusation of a non-bailable offence.</p>
+        `
+      },
+      {
+        id: "note-5",
+        title: "Companies Act 2013 & Board Compliances Handbook",
+        category: "cacs",
+        categoryName: "CA / CS",
+        badgeColor: "bg-emerald-100 text-emerald-800",
+        readTime: "9 min read",
+        pages: "16 Pages PDF",
+        description: "Statutory deadlines for Annual Filings (AOC-4, MGT-7), Director KYC (DIR-3), Board Meeting frequency, and Small Company audit exemptions.",
+        tags: ["#CompaniesAct", "#CorporateLaw", "#MCA21"],
+        content: `
+          <h5 class="text-base font-bold text-slate-900">1. Key Annual Filing Deadlines</h5>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg my-2 text-xs space-y-1">
+            <p>• <strong>Form AOC-4 (Financial Statements):</strong> Within 30 days of the Annual General Meeting (AGM) under Section 137.</p>
+            <p>• <strong>Form MGT-7 / 7A (Annual Return):</strong> Within 60 days of the AGM under Section 92.</p>
+            <p>• <strong>Form DIR-3 KYC:</strong> On or before September 30th annually for all individuals holding a DIN.</p>
+            <p>• <strong>Form DPT-3 (Return of Deposits):</strong> Annually on or before June 30th.</p>
+          </div>
+          <h5 class="text-base font-bold text-slate-900 mt-4">2. Board Meeting Frequency (Section 173)</h5>
+          <p>First Board Meeting within 30 days of incorporation. Thereafter, a minimum of 4 meetings per year, with no more than 120 days intervening between two consecutive meetings (relaxation available for OPCs and Small Companies).</p>
+        `
+      },
+      {
+        id: "note-6",
+        title: "Citizen Handbook: Filing RTI & Consumer Complaints",
+        category: "citizens",
+        categoryName: "Citizens",
+        badgeColor: "bg-amber-100 text-amber-800",
+        readTime: "6 min read",
+        pages: "10 Pages PDF",
+        description: "Practical step-by-step citizen guide: How to file an online RTI with Central/State departments and filing consumer complaints via the E-Daakhil portal.",
+        tags: ["#RTIAct", "#ConsumerRights", "#EDaakhil"],
+        content: `
+          <h5 class="text-base font-bold text-slate-900">1. Right to Information (RTI) Process</h5>
+          <p>Any Indian citizen can seek information from a Public Authority under Section 6 of the RTI Act 2005:</p>
+          <ul class="list-disc pl-5 my-2 space-y-1 text-xs">
+            <li><strong>Filing Portal:</strong> Visit <em>rtionline.gov.in</em> for Central Government ministries and departments.</li>
+            <li><strong>Statutory Timeline:</strong> 30 days from receipt of application; 48 hours if concerning life or liberty (Section 7(1)).</li>
+            <li><strong>First Appeal:</strong> Can be filed within 30 days if no response or if aggrieved by the CPIO's decision.</li>
+          </ul>
+          <h5 class="text-base font-bold text-slate-900 mt-4">2. Filing Consumer Grievances on E-Daakhil</h5>
+          <p>Under the Consumer Protection Act 2019, claims up to Rs 50 Lakhs are heard by the District Commission. Consumers can file e-complaints directly without compulsory advocate representation.</p>
+        `
+      }
+    ];
+
+    // --- State & DOM References ---
+    let currentCategory = 'all';
+    let searchQuery = '';
+    let diaryEntries = [];
+    let customNotes = [];
+
+    // Quiz State
+    let currentQuestionIndex = 0;
+    let quizScore = 0;
+    let answeredQuestions = 0;
+
+    // Calendar State
+    let currentCalDate = new Date(2026, 9, 28);
+    let selectedDateString = "2026-10-30";
+
+    // Theme State
+    let currentTheme = 'light';
+
+    // Load initial diary, custom notes, and theme
+    try {
+      const savedTheme = localStorage.getItem('nyayasetu_theme');
+      if (savedTheme) {
+        currentTheme = savedTheme;
+      }
+
+      const savedDiary = localStorage.getItem('nyayasetu_diary');
+      if (savedDiary) {
+        diaryEntries = JSON.parse(savedDiary);
+      } else {
+        diaryEntries = [
+          { id: 1, title: "BNSS Bail Application Hearing", date: "2026-10-30", role: "Court Hearing", note: "Parity arguments before ASJ Court 3" },
+          { id: 2, title: "Constitutional Law Revision", date: "2026-11-02", role: "Judiciary Study", note: "Finish Articles 14 to 21 landmark judgments" },
+          { id: 3, title: "MGT-7 Annual Return Filing", date: "2026-10-31", role: "ROC / Tax Filing", note: "Final board approval attachment" },
+          { id: 4, title: "Consumer Forum Final Arguments", date: "2026-11-06", role: "Court Hearing", note: "Rejoinder on insurance claim repudiation" }
+        ];
+      }
+
+      const savedCustomNotes = localStorage.getItem('nyayasetu_custom_notes');
+      if (savedCustomNotes) {
+        customNotes = JSON.parse(savedCustomNotes);
+      }
+    } catch(e) {
+      diaryEntries = [
+        { id: 1, title: "BNSS Bail Application Hearing", date: "2026-10-30", role: "Court Hearing", note: "Parity arguments before ASJ Court 3" }
+      ];
+    }
+
+    function getAllNotes() {
+      return [...customNotes, ...initialNotes];
+    }
+
+    // --- Toast Function ---
+    function showToast(message, icon = "✓") {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-msg');
+      const iconEl = document.getElementById('toast-icon');
+      msgEl.textContent = message;
+      iconEl.textContent = icon;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    // --- Theme Switcher Logic ---
+    function applyTheme(theme) {
+      currentTheme = theme;
+      const body = document.getElementById('app-body');
+      const icon = document.getElementById('theme-icon');
+      if (theme === 'dark') {
+        body.classList.add('theme-dark');
+        icon.textContent = '☀️';
+      } else {
+        body.classList.remove('theme-dark');
+        icon.textContent = '🌙';
+      }
+      try {
+        localStorage.setItem('nyayasetu_theme', theme);
+      } catch(e) {}
+    }
+
+    document.getElementById('theme-toggle-btn').addEventListener('click', () => {
+      const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+      applyTheme(nextTheme);
+      showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} Mode`, nextTheme === 'dark' ? '🌙' : '☀️');
+    });
+
+    // --- Export CSV & Print Cause Board (NEW in Step 4) ---
+    function exportCauseListToCSV() {
+      if (diaryEntries.length === 0) {
+        showToast('No diary entries to export', '⚠️');
+        return;
+      }
+
+      const headers = ["ID", "Title / Case", "Scheduled Date", "Role / Category", "Notes / Stage"];
+      const rows = diaryEntries.map(entry => [
+        entry.id,
+        `"${(entry.title || '').replace(/"/g, '""')}"`,
+        `"${entry.date || ''}"`,
+        `"${(entry.role || '').replace(/"/g, '""')}"`,
+        `"${(entry.note || '').replace(/"/g, '""')}"`
+      ]);
+
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `NyayaSetu_CauseList_${new Date().toISOString().split('T')[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      showToast('Cause list exported to CSV!', '📥');
+    }
+
+    document.getElementById('export-csv-btn').addEventListener('click', exportCauseListToCSV);
+    document.getElementById('print-board-btn').addEventListener('click', () => {
+      showToast('Preparing printable cause board...', '🖨️');
+      window.print();
+    });
+
+    // --- Calendar Engine ---
+    const roleColors = {
+      "Court Hearing": "bg-blue-600",
+      "Judiciary Study": "bg-purple-600",
+      "ROC / Tax Filing": "bg-emerald-600",
+      "Citizen Legal Query": "bg-amber-600"
+    };
+
+    function renderCalendar() {
+      const year = currentCalDate.getFullYear();
+      const month = currentCalDate.getMonth();
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      document.getElementById('cal-month-title').textContent = `${monthNames[month]} ${year}`;
+
+      const grid = document.getElementById('calendar-days-grid');
+      grid.innerHTML = '';
+
+      const firstDayIndex = new Date(year, month, 1).getDay(); // 0 = Sun
+      const totalDays = new Date(year, month + 1, 0).getDate();
+
+      // Leading blank padding
+      for (let i = 0; i < firstDayIndex; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = "h-16 rounded-lg bg-slate-50/50 border border-transparent";
+        grid.appendChild(emptyCell);
+      }
+
+      // Day cells
+      for (let d = 1; d <= totalDays; d++) {
+        const monthFormatted = String(month + 1).padStart(2, '0');
+        const dayFormatted = String(d).padStart(2, '0');
+        const dateStr = `${year}-${monthFormatted}-${dayFormatted}`;
+
+        const cell = document.createElement('div');
+        const isSelected = (dateStr === selectedDateString);
+
+        // Find matches in diary
+        const matchingEntries = diaryEntries.filter(entry => entry.date === dateStr);
+
+        let cellClasses = "h-16 p-1.5 rounded-lg border transition-all cursor-pointer flex flex-col justify-between ";
+        if (isSelected) {
+          cellClasses += "bg-amber-50/80 border-amber-500 ring-2 ring-amber-400/40 shadow-sm";
+        } else {
+          cellClasses += "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50";
+        }
+        cell.className = cellClasses;
+
+        // Header of cell
+        const dayHeader = document.createElement('div');
+        dayHeader.className = "flex items-center justify-between";
+        dayHeader.innerHTML = `<span class="font-bold text-[11px] ${matchingEntries.length > 0 ? 'text-amber-800' : 'text-slate-700'}">${d}</span>`;
+
+        // Dots container
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = "flex flex-wrap gap-1 mt-auto";
+
+        if (matchingEntries.length > 0) {
+          matchingEntries.forEach(entry => {
+            const dot = document.createElement('span');
+            const color = roleColors[entry.role] || "bg-slate-500";
+            dot.className = `w-2 h-2 rounded-full ${color}`;
+            dot.title = `${entry.role}: ${entry.title}`;
+            dotsContainer.appendChild(dot);
+          });
+        }
+
+        cell.appendChild(dayHeader);
+        cell.appendChild(dotsContainer);
+
+        cell.addEventListener('click', () => {
+          selectedDateString = dateStr;
+          renderCalendar();
+          renderSelectedDayCauseList();
+        });
+
+        grid.appendChild(cell);
+      }
+
+      renderSelectedDayCauseList();
+    }
+
+    function renderSelectedDayCauseList() {
+      const container = document.getElementById('selected-day-items');
+      const label = document.getElementById('selected-date-label');
+      label.textContent = selectedDateString;
+      container.innerHTML = '';
+
+      const matching = diaryEntries.filter(entry => entry.date === selectedDateString);
+
+      if (matching.length === 0) {
+        container.innerHTML = `
+          <div class="py-8 text-center text-slate-400 space-y-1">
+            <p class="text-xs">No court hearings or filings scheduled for this date.</p>
+            <p class="text-[10px] text-slate-400">Add an entry from the Quick Diary above.</p>
+          </div>
+        `;
+        return;
+      }
+
+      matching.forEach(item => {
+        const itemEl = document.createElement('div');
+        itemEl.className = "p-2.5 rounded-lg bg-white border border-slate-200 shadow-xs space-y-1";
+        const badgeColor = roleColors[item.role] || "bg-slate-600";
+        itemEl.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-xs text-slate-900">${item.title}</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded text-white ${badgeColor}">${item.role}</span>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-snug">${item.note ? item.note : 'No specific agenda recorded'}</p>
+        `;
+        container.appendChild(itemEl);
+      });
+    }
+
+    document.getElementById('cal-prev-btn').addEventListener('click', () => {
+      currentCalDate.setMonth(currentCalDate.getMonth() - 1);
+      renderCalendar();
+    });
+
+    document.getElementById('cal-next-btn').addEventListener('click', () => {
+      currentCalDate.setMonth(currentCalDate.getMonth() + 1);
+      renderCalendar();
+    });
+
+    // --- Quiz Engine ---
+    function renderQuizQuestion() {
+      const q = quizQuestions[currentQuestionIndex];
+      document.getElementById('quiz-subject-badge').textContent = q.subject;
+      document.getElementById('quiz-progress-text').textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+      document.getElementById('quiz-question-text').textContent = q.question;
+      
+      const optionsContainer = document.getElementById('quiz-options-container');
+      optionsContainer.innerHTML = '';
+
+      const explBox = document.getElementById('quiz-explanation-box');
+      const nextBtn = document.getElementById('quiz-next-btn');
+      explBox.classList.add('hidden');
+      nextBtn.classList.add('hidden');
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "quiz-opt-btn p-3 rounded-xl bg-slate-900/60 hover:bg-slate-700/80 border border-slate-700 text-left text-xs sm:text-sm font-medium text-slate-200 transition-all flex items-center justify-between";
+        btn.innerHTML = `
+          <span><strong class="text-amber-400 mr-2">${String.fromCharCode(65 + idx)}.</strong> ${opt.text}</span>
+          <span class="opt-status-icon text-sm"></span>
+        `;
+        
+        btn.addEventListener('click', () => {
+          handleQuizAnswer(btn, opt.isCorrect, q.explanation);
+        });
+
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function handleQuizAnswer(selectedBtn, isCorrect, explanation) {
+      const allOptBtns = document.querySelectorAll('.quiz-opt-btn');
+      allOptBtns.forEach(b => {
+        b.disabled = true;
+        b.classList.remove('hover:bg-slate-700/80');
+      });
+
+      answeredQuestions++;
+
+      if (isCorrect) {
+        selectedBtn.classList.remove('bg-slate-900/60', 'border-slate-700');
+        selectedBtn.classList.add('bg-emerald-950/80', 'border-emerald-500', 'text-emerald-200');
+        selectedBtn.querySelector('.opt-status-icon').textContent = '✅';
+        quizScore++;
+        showToast('Correct answer! +1 point', '🎉');
+      } else {
+        selectedBtn.classList.remove('bg-slate-900/60', 'border-slate-700');
+        selectedBtn.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-200');
+        selectedBtn.querySelector('.opt-status-icon').textContent = '❌';
+        showToast('Incorrect. Review the citation below.', '⚠️');
+
+        const q = quizQuestions[currentQuestionIndex];
+        allOptBtns.forEach((b, idx) => {
+          if (q.options[idx].isCorrect) {
+            b.classList.add('border-emerald-500/80', 'bg-emerald-950/50');
+            b.querySelector('.opt-status-icon').textContent = '✓';
+          }
+        });
+      }
+
+      document.getElementById('quiz-score-display').textContent = `${quizScore} / ${answeredQuestions}`;
+
+      const explBox = document.getElementById('quiz-explanation-box');
+      document.getElementById('quiz-explanation-text').textContent = explanation;
+      explBox.classList.remove('hidden');
+
+      const nextBtn = document.getElementById('quiz-next-btn');
+      if (currentQuestionIndex < quizQuestions.length - 1) {
+        nextBtn.innerHTML = `<span>Next Question</span> <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>`;
+      } else {
+        nextBtn.innerHTML = `<span>Finish & View Results</span> <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+      }
+      nextBtn.classList.remove('hidden');
+    }
+
+    document.getElementById('quiz-next-btn').addEventListener('click', () => {
+      if (currentQuestionIndex < quizQuestions.length - 1) {
+        currentQuestionIndex++;
+        renderQuizQuestion();
+      } else {
+        showToast(`Quiz completed! Final Score: ${quizScore}/${quizQuestions.length}`, '🏆');
+        currentQuestionIndex = 0;
+        renderQuizQuestion();
+      }
+    });
+
+    document.getElementById('quiz-reset-btn').addEventListener('click', () => {
+      currentQuestionIndex = 0;
+      quizScore = 0;
+      answeredQuestions = 0;
+      document.getElementById('quiz-score-display').textContent = `0 / 0`;
+      renderQuizQuestion();
+      showToast('Quiz session reset', '🔄');
+    });
+
+    // --- Notes Compendium Engine ---
+    function renderNotes() {
+      const container = document.getElementById('notes-grid');
+      container.innerHTML = '';
+
+      const allNotes = getAllNotes();
+
+      const filtered = allNotes.filter(note => {
+        const matchesCategory = (currentCategory === 'all' || note.category === currentCategory);
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch = !q || 
+          note.title.toLowerCase().includes(q) || 
+          note.description.toLowerCase().includes(q) ||
+          note.tags.some(t => t.toLowerCase().includes(q));
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400">
+            <svg class="w-12 h-12 mx-auto mb-3 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="text-sm font-medium">No legal notes found matching "${searchQuery}".</p>
+            <button id="clear-search-btn" class="mt-2 text-xs text-amber-600 underline font-semibold">Clear Search</button>
+          </div>
+        `;
+        const clearBtn = document.getElementById('clear-search-btn');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            document.getElementById('search-input').value = '';
+            searchQuery = '';
+            renderNotes();
+          });
+        }
+        return;
+      }
+
+      filtered.forEach(note => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group";
+        card.innerHTML = `
+          <div class="p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${note.badgeColor}">
+                ${note.categoryName}
+              </span>
+              <span class="text-xs text-slate-400 font-mono flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                ${note.readTime}
+              </span>
+            </div>
+
+            <h4 class="font-bold text-slate-900 group-hover:text-amber-700 transition-colors text-base line-clamp-2">
+              ${note.title}
+            </h4>
+
+            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+              ${note.description}
+            </p>
+
+            <div class="flex flex-wrap gap-1 pt-1">
+              ${note.tags.map(t => `<span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono">${t}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-500 font-medium">${note.pages}</span>
+            <div class="flex space-x-2">
+              <button data-id="${note.id}" class="view-note-btn px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium rounded-lg transition-colors shadow-sm">
+                Read Note
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      document.querySelectorAll('.view-note-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          openNoteModal(id);
+        });
+      });
+    }
+
+    // --- Modal Logic ---
+    function openNoteModal(id) {
+      const allNotes = getAllNotes();
+      const note = allNotes.find(n => n.id === id);
+      if (!note) return;
+
+      document.getElementById('modal-title').textContent = note.title;
+      document.getElementById('modal-category-badge').textContent = note.categoryName;
+      document.getElementById('modal-content').innerHTML = note.content;
+      document.getElementById('note-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('note-modal').classList.add('hidden');
+    }
+
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    document.getElementById('modal-dismiss-btn').addEventListener('click', closeModal);
+    document.getElementById('modal-print-btn').addEventListener('click', () => {
+      showToast('Opening print dialog for PDF export...', '📄');
+      window.print();
+    });
+
+    document.getElementById('note-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'note-modal') closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeUploadModal();
+      }
+    });
+
+    // --- Custom Note Uploader Logic ---
+    function openUploadModal() {
+      document.getElementById('upload-modal').classList.remove('hidden');
+    }
+
+    function closeUploadModal() {
+      document.getElementById('upload-modal').classList.add('hidden');
+    }
+
+    document.getElementById('open-upload-btn').addEventListener('click', openUploadModal);
+    document.getElementById('upload-close-btn').addEventListener('click', closeUploadModal);
+    document.getElementById('upload-cancel-btn').addEventListener('click', closeUploadModal);
+
+    document.getElementById('upload-save-btn').addEventListener('click', () => {
+      const title = document.getElementById('custom-title').value.trim();
+      const cat = document.getElementById('custom-cat').value;
+      const tagsRaw = document.getElementById('custom-tags').value.trim();
+      const body = document.getElementById('custom-body').value.trim();
+      const fileInput = document.getElementById('custom-file');
+
+      if (!title || !body) {
+        showToast('Please provide a title and summary content', '⚠️');
+        return;
+      }
+
+      const categoryLabels = {
+        judiciary: "Judiciary Aspirants",
+        advocates: "Advocates",
+        cacs: "CA / CS",
+        citizens: "Citizens"
+      };
+
+      const badgeColors = {
+        judiciary: "bg-purple-100 text-purple-800",
+        advocates: "bg-blue-100 text-blue-800",
+        cacs: "bg-emerald-100 text-emerald-800",
+        citizens: "bg-amber-100 text-amber-800"
+      };
+
+      const tags = tagsRaw 
+        ? tagsRaw.split(',').map(t => t.trim().startsWith('#') ? t.trim() : '#' + t.trim()) 
+        : ['#CustomNote', '#UserFile'];
+
+      const fileName = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : "Custom PDF Draft";
+
+      const newNote = {
+        id: "custom-" + Date.now(),
+        title: title,
+        category: cat,
+        categoryName: categoryLabels[cat] || "General Law",
+        badgeColor: badgeColors[cat] || "bg-slate-100 text-slate-800",
+        readTime: "4 min read",
+        pages: fileName,
+        description: body.length > 120 ? body.substring(0, 117) + "..." : body,
+        tags: tags,
+        content: `
+          <h5 class="text-base font-bold text-slate-900 mb-2">Note Content</h5>
+          <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-lg text-xs leading-relaxed whitespace-pre-line">
+            ${body}
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+            <span>Attached Source: <strong>${fileName}</strong></span>
+            <span class="text-emerald-700 font-semibold">User Document Verified</span>
+          </div>
+        `
+      };
+
+      customNotes.unshift(newNote);
+      try {
+        localStorage.setItem('nyayasetu_custom_notes', JSON.stringify(customNotes));
+      } catch(e) {}
+
+      renderNotes();
+      closeUploadModal();
+
+      document.getElementById('custom-title').value = '';
+      document.getElementById('custom-tags').value = '';
+      document.getElementById('custom-body').value = '';
+      fileInput.value = '';
+
+      showToast('Custom note saved to library!', '📚');
+    });
+
+    // --- Diary Logic & Calendar Sync ---
+    function renderDiary() {
+      const container = document.getElementById('diary-list');
+      container.innerHTML = '';
+
+      if (diaryEntries.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slate-400 py-3 text-center">No diary entries yet. Add your first task above.</p>';
+        return;
+      }
+
+      diaryEntries.forEach(item => {
+        const row = document.createElement('div');
+        row.className = "flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200 text-xs";
+        row.innerHTML = `
+          <div class="overflow-hidden pr-2">
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-slate-800 truncate">${item.title}</span>
+              <span class="text-[10px] px-1.5 py-0.2 bg-slate-200 text-slate-700 rounded">${item.role}</span>
+            </div>
+            <p class="text-slate-500 text-[11px] truncate">${item.note ? item.note : 'No notes'} • Due: <span class="font-medium text-amber-700">${item.date || 'TBD'}</span></p>
+          </div>
+          <button data-id="${item.id}" class="delete-diary-btn text-slate-400 hover:text-red-600 p-1 rounded transition-colors flex-shrink-0" title="Delete entry">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+          </button>
+        `;
+        container.appendChild(row);
+      });
+
+      document.querySelectorAll('.delete-diary-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-id'));
+          diaryEntries = diaryEntries.filter(d => d.id !== id);
+          saveDiary();
+          renderDiary();
+          renderCalendar();
+          showToast('Entry removed from diary', '🗑️');
+        });
+      });
+    }
+
+    function saveDiary() {
+      try {
+        localStorage.setItem('nyayasetu_diary', JSON.stringify(diaryEntries));
+      } catch(e) {}
+    }
+
+    document.getElementById('diary-add-btn').addEventListener('click', () => {
+      const titleInput = document.getElementById('diary-title');
+      const dateInput = document.getElementById('diary-date');
+      const roleSelect = document.getElementById('diary-role');
+      const noteInput = document.getElementById('diary-note');
+
+      if (!titleInput.value.trim()) {
+        showToast('Please enter a case or subject title', '⚠️');
+        return;
+      }
+
+      const chosenDate = dateInput.value || new Date().toISOString().split('T')[0];
+
+      const newEntry = {
+        id: Date.now(),
+        title: titleInput.value.trim(),
+        date: chosenDate,
+        role: roleSelect.value,
+        note: noteInput.value.trim()
+      };
+
+      diaryEntries.unshift(newEntry);
+      selectedDateString = chosenDate;
+      saveDiary();
+      renderDiary();
+      renderCalendar();
+
+      titleInput.value = '';
+      noteInput.value = '';
+      showToast('Scheduled and added to calendar!', '📅');
+    });
+
+    // --- Limitation Calculator Logic ---
+    document.getElementById('calc-deadline-btn').addEventListener('click', () => {
+      const dateVal = document.getElementById('cause-date').value;
+      const actionType = document.getElementById('action-type').value;
+
+      if (!dateVal) {
+        showToast('Please select an order / cause date first', '⚠️');
+        return;
+      }
+
+      const baseDate = new Date(dateVal);
+      let daysToAdd = 30;
+      let citation = "";
+
+      switch (actionType) {
+        case "90":
+          daysToAdd = 90;
+          citation = "Limitation Act 1963, Schedule Article 116(a): 90 days for appeal to High Court.";
+          break;
+        case "30":
+          daysToAdd = 30;
+          citation = "Limitation Act 1963, Schedule Article 116(b): 30 days for appeal to any other court.";
+          break;
+        case "30_ws":
+          daysToAdd = 30;
+          citation = "CPC Order VIII Rule 1: 30 days statutory timeline for Written Statement.";
+          break;
+        case "120_ws":
+          daysToAdd = 120;
+          citation = "Commercial Courts Act 2015: Maximum extendable timeline of 120 days from summons service.";
+          break;
+        case "60_ca":
+          daysToAdd = 60;
+          citation = "Companies Act 2013, Section 92: Filing Form MGT-7 within 60 days of AGM.";
+          break;
+        case "730":
+          daysToAdd = 730;
+          citation = "Consumer Protection Act 2019, Section 69: 2 years from the date of cause of action.";
+          break;
+        default:
+          daysToAdd = 30;
+      }
+
+      const deadline = new Date(baseDate);
+      deadline.setDate(deadline.getDate() + daysToAdd);
+
+      const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+      const formattedDeadline = deadline.toLocaleDateString('en-IN', options);
+
+      const today = new Date();
+      const diffTime = deadline - today;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      const resultBox = document.getElementById('calc-result');
+      const dateEl = document.getElementById('calc-result-date');
+      const badgeEl = document.getElementById('calc-status-badge');
+      const remEl = document.getElementById('calc-days-remaining');
+      const citEl = document.getElementById('calc-citation');
+
+      resultBox.classList.remove('hidden');
+      dateEl.textContent = formattedDeadline;
+      citEl.textContent = citation;
+
+      if (diffDays < 0) {
+        badgeEl.textContent = "Expired";
+        badgeEl.className = "px-2 py-0.5 text-xs font-semibold rounded-full bg-red-100 text-red-800";
+        remEl.textContent = `Expired ${Math.abs(diffDays)} days ago`;
+      } else if (diffDays <= 7) {
+        badgeEl.textContent = "Critical";
+        badgeEl.className = "px-2 py-0.5 text-xs font-semibold rounded-full bg-amber-100 text-amber-800";
+        remEl.textContent = `${diffDays} days remaining`;
+      } else {
+        badgeEl.textContent = "Within Time";
+        badgeEl.className = "px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800";
+        remEl.textContent = `${diffDays} days remaining`;
+      }
+
+      showToast('Limitation deadline computed!');
+    });
+
+    // Default Dates
+    const todayStr = new Date().toISOString().split('T')[0];
+    document.getElementById('cause-date').value = todayStr;
+    document.getElementById('diary-date').value = todayStr;
+
+    // --- Filter Buttons Logic ---
+    const filterButtons = document.querySelectorAll('.cat-filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-cat');
+        currentCategory = cat;
+
+        filterButtons.forEach(b => {
+          b.className = "cat-filter-btn px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all";
+        });
+        btn.className = "cat-filter-btn px-3 py-1 text-xs font-semibold rounded-full bg-slate-900 text-white shadow-sm transition-all";
+
+        renderNotes();
+      });
+    });
+
+    // Search Input Logic
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderNotes();
+    });
+
+    // Nav smooth scroll buttons
+    document.getElementById('nav-tools-btn').addEventListener('click', () => {
+      document.getElementById('tools-section').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.getElementById('nav-calendar-btn').addEventListener('click', () => {
+      document.getElementById('calendar-section').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.getElementById('nav-quiz-btn').addEventListener('click', () => {
+      document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.getElementById('nav-notes-btn').addEventListener('click', () => {
+      document.getElementById('notes-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Initial Renders
+    applyTheme(currentTheme);
+    renderCalendar();
+    renderQuizQuestion();
+    renderNotes();
+    renderDiary();
+  </script>
+</body>
+</html>
